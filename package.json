@@ -1,0 +1,49 @@
+{
+  "name": "wreckage",
+  "version": "1.0.0",
+  "description": "Utilities and helpers for Hapi's Wreck library",
+  "main": "./dist/index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "ava",
+    "build": "babel src -s inline -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://TylerGarlick@github.com/TylerGarlick/wreckage.git"
+  },
+  "keywords": [
+    "Wreck",
+    "Request",
+    "Http",
+    "POST",
+    "GET",
+    "PUT",
+    "DELETE",
+    "PATCH"
+  ],
+  "author": "Tyler Garlick <tjgarlick@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TylerGarlick/wreckage/issues"
+  },
+  "homepage": "https://github.com/TylerGarlick/wreckage#readme",
+  "dependencies": {
+    "bluebird": "^3.4.0",
+    "wreck": "^8.0.0"
+  },
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.9.1",
+    "babel-eslint": "^6.0.4",
+    "babel-plugin-espower": "^2.2.0",
+    "babel-preset-pundits": "^1.0.5",
+    "babel-register": "^6.9.0",
+    "eslint-config-leisurelink": "^1.0.2",
+    "power-assert": "^1.4.1"
+  }
+}
