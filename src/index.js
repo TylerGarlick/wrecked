@@ -1,8 +1,20 @@
 import internals from './infrastructure';
 
-let defaultGlobals = {};
+let defaultGlobals = {
+  // baseUrl: '',
+  headers: {},
+  redirects: 3,
+  // beforeRedirect: (redirectMethod, statusCode, location, resHeaders, redirectOptions, next) => next(),
+  // redirected: (statusCode, location, req) => {},
+  // timeoute
+  // maxBytes
+  // rejectUnnauthorized,
+  // json,
+  //agent: null,
+  //secureProtocol: 'SSLv3_method'
+};
 
-const combine = (options, instanceOptions = {}) => internals.objects.merge(defaultGlobals, instanceOptions, options);
+const combine = (options, defaults) => Object.assign({}, defaults, options);
 
 /**
  * Wreckage
@@ -10,15 +22,7 @@ const combine = (options, instanceOptions = {}) => internals.objects.merge(defau
  * @public
  * @class
  */
-export default class Wreckage {
-
-
-  /**
-   * @param {Object} options
-   */
-  constructor(options = {}) {
-    this.configuration = internals.objects.merge(defaultGlobals, options);
-  }
+export default {
 
   /**
    * Helper for 'GET'
@@ -29,53 +33,34 @@ export default class Wreckage {
    * @param {Object} [options]
    * @returns {Promise<Object>|*}
    */
-  async get(uri, options) {
-    const config = combine(options, this.configuration);
-    return await internals.wreck.get(uri, config);
-  }
+  async get(uri, options = {}) {
+    return await internals.wreck.get(uri, combine(options, this.defaults));
+  },
 
-  async post(uri, payload, options) {
-    const config = combine(options, this.configuration);
-    return await internals.wreck.post(uri, payload, config);
-  }
+  async post(uri, payload, options = {}) {
+    return await internals.wreck.post(uri, payload, combine(options, this.defaults));
+  },
 
-  async put(uri, payload, options) {
-    const config = combine(options, this.configuration);
-    return await internals.wreck.put(uri, payload, config);
-  }
+  async put(uri, payload, options = {}) {
+    return await internals.wreck.put(uri, payload, combine(options, this.defaults));
+  },
 
-  async patch(uri, payload, options) {
-    const config = combine(options, this.configuration);
-    return await internals.wreck.patch(uri, payload, config);
-  }
+  async patch(uri, payload, options = {}) {
+    return await internals.wreck.patch(uri, payload, combine(options, this.defaults));
+  },
 
-  async delete(uri, payload, options) {
-    const config = combine(options, this.configuration);
-    return await internals.wreck.delete(uri, payload, config);
-  }
+  async delete(uri, payload, options = {}) {
+    return await internals.wreck.delete(uri, payload, combine(options, this.defaults));
+  },
 
-  async request(method, uri, options) {
-    const config = combine(options, this.configuration);
-    return await internals.wreck.request(method, uri, config);
-  }
+  async request(method, uri, options = {}) {
+    return await internals.wreck.request(method, uri, combine(options, this.defaults));
+  },
 
-  /**
-   * Sets the global defaults for every instance
-   *
-   * @public
-   * @static
-   *
-   * @param {Object} [options]
-   * @param {Boolean} [shouldReset]
-   * @returns {Object}
-   */
-  static defaults(options = {}, shouldReset = false) {
-    if (shouldReset) {
-      defaultGlobals = {};
-      return defaultGlobals;
-    }
+  create(options = {}) {
+    const defaults = combine(options, this.defaults);
+    return Object.assign({}, this, { defaults });
+  },
 
-    return defaultGlobals = internals.objects.merge(defaultGlobals, options);
-  }
-  
+  defaults: defaultGlobals
 };

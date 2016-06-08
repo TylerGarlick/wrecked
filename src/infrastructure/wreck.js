@@ -1,5 +1,7 @@
 import Wreck from 'wreck';
-import Promise from 'bluebird';
+import Boom from 'boom';
+import Util from 'util';
+import {Stream} from 'stream';
 
 const read = async(response, options) => {
   return await new Promise((resolve, reject) => {
@@ -10,7 +12,6 @@ const read = async(response, options) => {
   });
 };
 
-
 const basicRequest = async(method, uri, options = {}) => {
   return await new Promise((resolve, reject) => {
     Wreck.request(method, uri, options, (err, response) => {
@@ -20,28 +21,35 @@ const basicRequest = async(method, uri, options = {}) => {
   });
 };
 
-
 const request = async(method, uri, options = {}) => {
   const requestOptions = options.request || {};
   const readOptions = options.read || {};
   readOptions.json = true;
-  
+
   const onlyPayload = options.onlyPayload || true;
 
   const response = await basicRequest(method, uri, requestOptions);
-  const payload = await read(response, readOptions);
 
-  if (onlyPayload)
-    return Promise.resolve(payload);
+  const statusCode = response.statusCode;
 
-  return Promise.resolve({ response, payload });
+  if (statusCode >= 200 && statusCode < 300) {
+    const payload = await read(response, readOptions);
+    if (onlyPayload)
+      return Promise.resolve(payload);
+
+    return Promise.resolve({ response, payload });
+  } else {
+    throw Boom.create(statusCode);
+  }
 };
-
 
 const requestWithPayload = async(method, uri, payload, options = {}) => {
   options.request = options.request || {};
-  options.request.payload = payload;
 
+  options.request.payload = payload;
+  if(!Buffer.isBuffer(payload) && !(payload instanceof Stream)) {
+    options.request.payload = Util.inspect(payload, { depth: null});
+  }
   return await request(method, uri, options);
 };
 
@@ -70,8 +78,6 @@ export default {
   put,
   get,
   patch,
-  read,
   request,
-  requestWithPayload,
-  delete: deletable,
+  delete: deletable
 };

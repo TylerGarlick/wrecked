@@ -1,8 +1,30 @@
 import test from 'ava';
 import Wreckage from '../src';
+import { USERS, BASE_URL } from './fixtures/users';
 
-test('#get(uri)', async() => {
-  const instance = new Wreckage();
-  const result = await instance.get('http://www.filltext.com/?rows=10&fname={firstName}&lname={lastName}');
-  assert.equal(result.length, 10, 'Array has more or less than 10 items');
+test.beforeEach(t => {
+  t.context = Wreckage.create();
+});
+
+test('#get(uri) that returns 200 with an array', async t => {
+  const result = await t.context.get(`${BASE_URL}/users`);
+  t.is(result.length, USERS.length);
+});
+
+test(`#get(uri) that returns 404`, async t => {
+  try {
+    await t.context.get(`${BASE_URL}/users/bogus`);
+  } catch (err) {
+    t.regex(err.message, /Found/);
+  }
+});
+
+test(`#get(url) that returns 200 with an object`, async t => {
+  const result = await t.context.get(`${BASE_URL}/users/1`);
+  t.deepEqual(result, USERS[0]);
+});
+
+test(`#get(url) that returns 200 with an array and query string params`, async t => {
+  const result = await t.context.get(`${BASE_URL}/users/search?isActive=true`);
+  t.is(result.length, USERS.length);
 });

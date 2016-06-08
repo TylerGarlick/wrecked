@@ -1,4 +1,3 @@
 {
-  "presets": [ "pundits" ],
-  "plugins": [ "babel-plugin-espower" ]
+  "presets": [ "pundits" ]
 }

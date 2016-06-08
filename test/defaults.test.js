@@ -1,26 +1,22 @@
 import test from 'ava';
 import Wreckage from '../src';
 
-test.beforeEach(() => {
-  Wreckage.defaults({}, true);
+test(`defaults are set correctly`, t => {
+  const defaults = Wreckage.defaults;
+
+  t.is(defaults.redirects, 3);
+  t.deepEqual(defaults.headers, {});
 });
 
-test('Wreckage.defaults', () => {
-  assert(Wreckage.defaults, {});
-});
+test(`#create(options) overrides the defaults for it's instance`, t => {
+  const config = { redirects: 4 };
+  const instance = Wreckage.create(config);
 
-test('Wreckage.defaults can be set', () => {
-  assert(Wreckage.defaults, {});
-
-  Wreckage.defaults({ hello: 'world' });
-  assert(Wreckage.defaults, { hello: 'world' });
-});
-
-test('Wreckage.new merges with defaults', () => {
-  const initialConfig = { json: true, force: true };
-  assert(Wreckage.defaults(initialConfig), { json: true, force: true });
-
-  const instance = new Wreckage({ force: false });
-  assert.equal(instance.configuration.force, false);
-  console.log(instance.configuration);
+  t.is(instance.defaults.redirects, config.redirects);
+  t.is(typeof(instance.get), 'function');
+  t.is(typeof(instance.post), 'function');
+  t.is(typeof(instance.put), 'function');
+  t.is(typeof(instance.delete), 'function');
+  t.is(typeof(instance.patch), 'function');
+  t.is(typeof(instance.defaults), 'object');
 });
