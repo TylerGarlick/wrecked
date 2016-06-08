@@ -1,9 +1,12 @@
 # Wreckage
 > Utilities and helpers for [Hapi's Wreck](https://github.com/hapijs/wreck) library
 
+[![Build Status](https://travis-ci.org/TylerGarlick/wreckage.svg?branch=master)](https://travis-ci.org/TylerGarlick/wreckage)
+
 ## Table of Contents
 
 - [Why](#why)
+- [Installation](#installation)
 - [API](#api)
 - [Roadmap](#roadmap)
 
@@ -12,7 +15,28 @@
     
 ## Why
 
+Wreck is an awesome library, and I always found myself wrapping the callbacks or building helpers around it.  Now i've formalized the helpers and provided a common interface.
+
+## Installation
+
+```console
+$ npm install wreckage --save
+```
+
 ## API
+
+### `get(uri, [options])`
+### `post(uri, payload, [options])`
+### `put(uri, payload, [options])`
+### `patch(uri, payload, [options])`
+### `delete(uri, payload, [options])`
+### `create(configuration)`
+
+#### `uri`
+
+Type `string`
+
+Url or path. To use a base
 
 ## Roadmap
 
@@ -20,11 +44,11 @@
 
 
 
-```bash
-npm install wreckage --save
-```
 
-## API
+
+
+
+
 
 ```js
 // ES5	
