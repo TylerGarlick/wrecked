@@ -8,7 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "ava",
+    "test": "ava test -r 'babel-register'",
     "build": "babel src -s inline -d dist"
   },
   "repository": {
