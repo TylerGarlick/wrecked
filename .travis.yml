@@ -1,9 +1,15 @@
 language: node_js
-
 node_js:
-  - "4"
-  - "5"
-  - "6"
-
+- '4'
+- '5'
+- '6'
 env:
-  - CXX=g++-4.8
+- CXX=g++-4.8
+deploy:
+  provider: npm
+  email: tjgarlick@gmail.com
+  api_key:
+    secure: pVzxA3qGJ9kdGQ6QNZvEE8KZI6Y0MGge0lJj1ml/teLobhbn41SNc4h8/TVhblll8dWzobUmvblZ+rnusSJqe2l7QGi+J/kbSEdpjdX5vo2l/ouGF2rxCyq6wuFtJRcAKxFWQ3/JhuQafcgAt83iKVOLk7thmba87fSNaXy/Kkl2iRpszPGDEz2PDTveuB/gM7JD2ZYTd8qANRBozxzjELK+xUuPgGHVAcnTOHcW9rp+dXG7zDc5n4JIlyX51ZlCy6FEJWpj9/BG7FjMF/gHDsgQlU1CnN1r4MA+1iB2P97uIBr/O9WgsEBtQspYDzjOH9zD52BZQIRxm0WtiP9rfrxiYJR6Qsvm26JTTplzY07ahUus2L7CnWKWdOFRnUgreGOo3t5XoCVfBsJt+gqhbMDrkoBuAxm4xonB0e94/Nlsetuwc6R3eLtpK0lrke/GmQz0h/0PAYsAzL2/KNGGuiQ3lSYV3xNwd+ekFndlw2TrqGJN5ELPKvauSgm42SqVSMzNOts2onC4X1KTvEAf3CxZMZM7X8hnpEr7mw3bGOCZ7jFh6kVCAyxsu16ovK+hgogg1cXCnhQ3jBnrnqswroGFNI9VJfgTxwH5InAgIisWr40WCbEpGbWF8kV1VcTy07ZNIWLmSBLJ6SOZN133jb+0v2IAVbXdkFzn4ZqHDxA=
+  on:
+    tags: true
+    repo: TylerGarlick/wrecked
