@@ -1,7 +1,7 @@
 import Wreck from 'wreck';
 import Boom from 'boom';
 import Util from 'util';
-import {Stream} from 'stream';
+import { Stream } from 'stream';
 
 const read = async(response, options) => {
   return await new Promise((resolve, reject) => {
@@ -47,37 +47,33 @@ const requestWithPayload = async(method, uri, payload, options = {}) => {
   options.request = options.request || {};
 
   options.request.payload = payload;
-  if(!Buffer.isBuffer(payload) && !(payload instanceof Stream)) {
-    options.request.payload = Util.inspect(payload, { depth: null});
+  if (!Buffer.isBuffer(payload) && !(payload instanceof Stream)) {
+    options.request.payload = Util.inspect(payload, { depth: null });
   }
   return await request(method, uri, options);
 };
 
-const post = async(uri, payload, options = {}) => {
-  return await requestWithPayload('POST', uri, payload, options);
-};
-
-const put = async(uri, payload, options = {}) => {
-  return await requestWithPayload('PUT', uri, payload, options);
-};
-
-const get = async(uri, options = {}) => {
-  return await request('GET', uri, options);
-};
-
-const patch = async(uri, payload, options = {}) => {
-  return await requestWithPayload('PATCH', uri, payload, options);
-};
-
-const deletable = async(uri, payload, options = {}) => {
-  return await requestWithPayload('DELETE', uri, payload, options);
-};
-
 export default {
-  post,
-  put,
-  get,
-  patch,
-  request,
-  delete: deletable
+
+  async post(uri, payload, options = {}) {
+    return await requestWithPayload('POST', uri, payload, options);
+  },
+
+  async put(uri, payload, options = {}) {
+    return await requestWithPayload('PUT', uri, payload, options);
+  },
+
+  async get(uri, options = {}) {
+    return await request('GET', uri, options);
+  },
+
+  async patch(uri, payload, options = {}) {
+    return await requestWithPayload('PATCH', uri, payload, options);
+  },
+
+  async delete(uri, payload, options = {}) {
+    return await requestWithPayload('DELETE', uri, payload, options);
+  },
+
+  request
 };

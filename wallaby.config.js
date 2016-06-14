@@ -14,11 +14,5 @@ module.exports = wallaby => ({
   compilers: {
     '**/*.js': wallaby.compilers.babel()
   },
-  testFramework: 'ava',
-
-  // workers: {
-    // initial: 2,
-    // regular: 5,
-    // recycle: true
-  // }
+  testFramework: 'ava'
 });

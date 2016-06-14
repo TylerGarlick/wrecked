@@ -1,77 +1,83 @@
 # Wreckage
+
 > Utilities and helpers for [Hapi's Wreck](https://github.com/hapijs/wreck) library
 
-[![Build Status](https://travis-ci.org/TylerGarlick/wreckage.svg?branch=master)](https://travis-ci.org/TylerGarlick/wreckage)
 
 ## Table of Contents
 
-- [Why](#why)
+- [Overview](#overview)
 - [Installation](#installation)
 - [API](#api)
 - [Roadmap](#roadmap)
 
-
-
     
-## Why
+## Overview
 
-Wreck is an awesome library, and I always found myself wrapping the callbacks or building helpers around it.  Now i've formalized the helpers and provided a common interface.
+[Wreck](https://github.com/hapijs/wreck) is an awesome library, and I always found myself wrapping the callbacks or building helpers around it.  This library is a simple wrapper with some utilitarian helpers geared towards JSON geared APIs.
+
 
 ## Installation
-
+ 
 ```console
 $ npm install wreckage --save
 ```
 
 ## API
 
-### `get(uri, [options])`
-### `post(uri, payload, [options])`
-### `put(uri, payload, [options])`
-### `patch(uri, payload, [options])`
-### `delete(uri, payload, [options])`
-### `create(configuration)`
+### [`.get(uri, [options])`](#get)
+### [`.post(uri, payload, [options])`](#post)
+### [`.put(uri, payload, [options])`](#put)
+### [`.patch(uri, payload, [options])`](#patch)
+### [`.delete(uri, payload, [options])`](#delete)
+### [`.create(configuration)`](#create-instance)
 
-#### `uri`
 
-Type `string`
+#### GET
 
-Url or path. To use a base
+> `.get(uri, [options])`
+
+Performs a GET request
+
+
+
+##### Parameters
+
+
+#### POST 
+
+> `.post(uri, payload, [options])`
+
+Performs a POST request
+
+#### PUT
+
+> `.put(uri, payload, [options])`
+
+Performs a PUT request
+
+#### PATCH
+
+> `.patch(uri, payload, [options])`
+
+Performs a PATCH request
+
+#### DELETE
+
+> `.delete(uri, payload, [options])`
+
+Performs a DELETE request
+
+
+#### CREATE Instance
+
+> `.create(configuration)`
+
+
 
 ## Roadmap
 
-
-
-
-
-
-
-
-
-
-
-```js
-// ES5	
-const Wreckage = require('wreckage');
-
-// ES2015/6
-import Wreckage from 'wreckage';
-```
-
-### Wreckage.get(uri, [options]) : Promise<Any> | Promise<[{}]>
-
-| Parameters      | Type              | Description                                                                                       | Required | Examples                                                                   |
-|:----------------|:------------------|:--------------------------------------------------------------------------------------------------|:---------|:---------------------------------------------------------------------------|
-| uri             | String            | Fully qualified path or path with options.baseUrl                                                 | Y        | http://google.com or options.basePath = 'https://google.com' then '/users' |
-| options         | Object            | Configuration for the get request                                                                 | -        | { }                                                                        |
-| options.baseUrl | String            | The base url of the request                                                                       | -        | { baseUrl: 'https://google.com' }                                          |
-| options.json    | Boolean or String | Set the json parser to true, false, or 'strict'.  Strict forces all requests to be parsed as json | -        | { json: true }                                                             |
-| options.headers | Object            | Key-valued pair of headers                                                                        | -        | { headers: { 'x-header': 'some value' }                                    |
-| options.auth    | Object            | Set the username and password for the request                                                     | -        | { auth: { username: 'bob', password: '1234' }                              |
-| options.request | Object            | Request options                                                                                   | -        | { request: {} }                                                            |
-| options.read    | Object            | Read Options                                                                                      | -        | { read: {} }                                                               |
-|                 |                   |                                                                                                   |          |                                                                            |
-
+- [ ] 100% code coverage
+- [ ] Complete documentation
 
 
 

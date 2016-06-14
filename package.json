@@ -1,5 +1,5 @@
 {
-  "name": "wreckage",
+  "name": "wrecked",
   "version": "1.0.0",
   "description": "Utilities and helpers for Hapi's Wreck library",
   "main": "./dist/index.js",
@@ -9,16 +9,19 @@
   },
   "scripts": {
     "test": "ava test -r 'babel-register'",
-    "build": "babel src -s inline -d dist"
+    "prepublish": "npm run build",
+    "build": "npm run build:clean; npm run build:compile",
+    "build:compile": "babel src -s inline -d dist",
+    "build:clean": "rm -rf dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://TylerGarlick@github.com/TylerGarlick/wreckage.git"
+    "url": "git+https://github.com/TylerGarlick/wrecked.git"
   },
   "keywords": [
     "Wreck",
     "Request",
-    "Http",
+    "HTTP",
     "POST",
     "GET",
     "PUT",
@@ -28,9 +31,9 @@
   "author": "Tyler Garlick <tjgarlick@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TylerGarlick/wreckage/issues"
+    "url": "https://github.com/TylerGarlick/wrecked/issues"
   },
-  "homepage": "https://github.com/TylerGarlick/wreckage#readme",
+  "homepage": "https://github.com/TylerGarlick/wrecked#readme",
   "dependencies": {
     "bluebird": "^3.4.0",
     "boom": "^3.2.1",
