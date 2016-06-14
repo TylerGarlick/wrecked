@@ -26,7 +26,6 @@ const request = async(method, uri, options = {}) => {
   const readOptions = options.read || {};
   readOptions.json = true;
 
-  const onlyPayload = options.onlyPayload || true;
 
   const response = await basicRequest(method, uri, requestOptions);
 
@@ -34,9 +33,6 @@ const request = async(method, uri, options = {}) => {
 
   if (statusCode >= 200 && statusCode < 300) {
     const payload = await read(response, readOptions);
-    if (onlyPayload)
-      return Promise.resolve(payload);
-
     return Promise.resolve({ response, payload });
   } else {
     throw Boom.create(statusCode);

@@ -7,8 +7,8 @@ test.beforeEach(t => {
 });
 
 test('#get(uri) that returns 200 with an array', async t => {
-  const result = await t.context.get(`${BASE_URL}/users`);
-  t.is(result.length, USERS.length);
+  const { payload } = await t.context.get(`${BASE_URL}/users`);
+  t.is(payload.length, USERS.length);
 });
 
 test(`#get(uri) that returns 404`, async t => {
@@ -20,11 +20,11 @@ test(`#get(uri) that returns 404`, async t => {
 });
 
 test(`#get(url) that returns 200 with an object`, async t => {
-  const result = await t.context.get(`${BASE_URL}/users/1`);
-  t.deepEqual(result, USERS[0]);
+  const { payload } = await t.context.get(`${BASE_URL}/users/1`);
+  t.deepEqual(payload, USERS[0]);
 });
 
 test(`#get(url) that returns 200 with an array and query string params`, async t => {
-  const result = await t.context.get(`${BASE_URL}/users/search?isActive=true`);
-  t.is(result.length, USERS.length);
+  const { payload } = await t.context.get(`${BASE_URL}/users/search?isActive=true`);
+  t.is(payload.length, USERS.length);
 });
