@@ -17,9 +17,17 @@
 
 
 ## Installation
- 
-```console
-$ npm install wreckage --save
+
+*NPM*
+
+```bash
+$ npm install wrecked --save
+```
+
+*Yarn*
+
+```bash
+$ yarn add wrecked
 ```
 
 ## API
