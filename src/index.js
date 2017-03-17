@@ -1,17 +1,16 @@
 import internals from './infrastructure';
 
 let defaultGlobals = {
-  // baseUrl: '',
-  headers: {},
-  redirects: 3,
-  // beforeRedirect: (redirectMethod, statusCode, location, resHeaders, redirectOptions, next) => next(),
-  // redirected: (statusCode, location, req) => {},
-  // timeoute
-  // maxBytes
-  // rejectUnnauthorized,
-  // json,
-  //agent: null,
-  //secureProtocol: 'SSLv3_method'
+  request: {
+    headers: {},
+    redirects: 3
+  },
+  read: {
+    json: true
+  },
+  validateStatus(statusCode) {
+    return statusCode >= 200 && statusCode < 300;
+  }
 };
 
 const combine = (options, defaults) => Object.assign({}, defaults, options);
