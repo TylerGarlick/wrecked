@@ -24,18 +24,17 @@ const basicRequest = async(method, uri, options = {}) => {
 const request = async(method, uri, options = {}) => {
   const requestOptions = options.request || {};
   const readOptions = options.read || {};
-  readOptions.json = true;
-
+  const validateStatus = options.validateStatus || function() { return true; };
 
   const response = await basicRequest(method, uri, requestOptions);
 
-  const statusCode = response.statusCode;
+  const {statusCode, statusMessage} = response;
 
-  if (statusCode >= 200 && statusCode < 300) {
+  if (validateStatus(statusCode)) {
     const payload = await read(response, readOptions);
     return Promise.resolve({ response, payload });
   } else {
-    throw Boom.create(statusCode);
+    throw Boom.create(statusCode, statusMessage, {response});
   }
 };
 
