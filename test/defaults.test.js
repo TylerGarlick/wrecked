@@ -4,15 +4,25 @@ import Wreckage from '../src';
 test(`defaults are set correctly`, t => {
   const defaults = Wreckage.defaults;
 
-  t.is(defaults.redirects, 3);
-  t.deepEqual(defaults.headers, {});
+  t.is(defaults.request.redirects, 3);
+  t.deepEqual(defaults.request.headers, {});
 });
 
 test(`#create(options) overrides the defaults for it's instance`, t => {
-  const config = { redirects: 4 };
+  const config = {
+    request: {
+      headers: {},
+      redirects: 3
+    },
+    read: {
+      json: true
+    }
+  };
+
   const instance = Wreckage.create(config);
 
-  t.is(instance.defaults.redirects, config.redirects);
+  t.is(instance.defaults.request, config.request);
+  t.is(instance.defaults.read, config.read);
   t.is(typeof(instance.get), 'function');
   t.is(typeof(instance.post), 'function');
   t.is(typeof(instance.put), 'function');
