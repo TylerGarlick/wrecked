@@ -93,7 +93,7 @@ export default {
   },
 
   /**
-   * Performs a 'DEETE' request
+   * Performs a 'DELETE' request
    *
    * @public
    *
