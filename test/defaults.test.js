@@ -29,4 +29,5 @@ Test(`#create(options) overrides the defaults for it's instance`, t => {
   t.is(typeof(instance.delete), 'function');
   t.is(typeof(instance.patch), 'function');
   t.is(typeof(instance.defaults), 'object');
+  
 });
