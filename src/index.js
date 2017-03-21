@@ -1,10 +1,12 @@
 import internals from './infrastructure';
 
 const DEFAULT_GLOBALS = {
+
   request: {
     headers: {},
     redirects: 3
   },
+
   read: {
     json: true
   },
@@ -18,7 +20,6 @@ const DEFAULT_GLOBALS = {
   validateStatus(statusCode) {
     return statusCode >= 200 && statusCode < 300;
   }
-
 };
 
 const combine = (options, defaults) => Object.assign({}, defaults, options);
@@ -38,6 +39,7 @@ export default {
    *
    * @param {String} uri
    * @param {Object} [options]
+   *
    * @returns {Promise<Object>|*}
    */
   async get(uri, options = {}) {
@@ -46,11 +48,13 @@ export default {
 
   /**
    *
+   * Performs a 'POST' request
+   *
    * @public
    *
-   * @param uri
-   * @param payload
-   * @param options
+   * @param {String} uri
+   * @param {Object|Array|*} payload
+   * @param {Object} [options]
    *
    * @returns {Promise.<*|Promise>}
    */
@@ -59,12 +63,13 @@ export default {
   },
 
   /**
+   * Performs a 'PUT' request
    *
    * @public
    *
-   * @param uri
-   * @param payload
-   * @param options
+   * @param {String} uri
+   * @param {Object|Array|*} payload
+   * @param {Object} [options]
    *
    * @returns {Promise.<*|Promise>}
    */
@@ -73,12 +78,13 @@ export default {
   },
 
   /**
+   * Performs a 'PATCH' request
    *
    * @public
    *
-   * @param uri
-   * @param payload
-   * @param options
+   * @param {String} uri
+   * @param {Object|Array|*} payload
+   * @param {Object} [options]
    *
    * @returns {Promise.<*|Promise>}
    */
@@ -87,12 +93,13 @@ export default {
   },
 
   /**
+   * Performs a 'DEETE' request
    *
    * @public
    *
-   * @param uri
-   * @param payload
-   * @param options
+   * @param {String} uri
+   * @param {Object|Array|*} payload
+   * @param {Object} [options]
    *
    * @returns {Promise.<*|Promise|boolean>}
    */
@@ -101,12 +108,12 @@ export default {
   },
 
   /**
-   *
+   * Performs a request
    * @public
    *
-   * @param method
-   * @param uri
-   * @param options
+   * @param {String} method
+   * @param {String} uri
+   * @param {Object} [options]
    *
    * @returns {Promise.<*|Promise|{headers, redirects}>}
    */
@@ -115,11 +122,13 @@ export default {
   },
 
   /**
-   * @private
+   * Creates an instance of Wreckage with specified options overriding the default configuration
+   *
+   * @public
    *
    * @param [options]
    *
-   * @returns {*}
+   * @returns {Object}
    */
   create(options = {}) {
     const defaults = combine(options, this.defaults);

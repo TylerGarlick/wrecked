@@ -2,7 +2,7 @@
   "name": "wrecked",
   "version": "1.0.0",
   "description": "Utilities and helpers for Hapi's Wreck library",
-  "main": "./index.js",
+  "main": "./dist",
   "directories": {
     "doc": "docs",
     "test": "test"
