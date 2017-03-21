@@ -2,6 +2,8 @@
 
 > Utilities and helpers for [Hapi's Wreck](https://github.com/hapijs/wreck) library
 
+[![Build Status](https://travis-ci.org/TylerGarlick/wrecked.svg?branch=master)](https://travis-ci.org/TylerGarlick/wrecked)
+
 
 ## Table of Contents
 
