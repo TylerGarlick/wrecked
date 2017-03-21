@@ -21,12 +21,8 @@
   "keywords": [
     "Wreck",
     "Request",
-    "HTTP",
-    "POST",
-    "GET",
-    "PUT",
-    "DELETE",
-    "PATCH"
+    "Promise",
+    "async"
   ],
   "author": "Tyler Garlick <tjgarlick@gmail.com>",
   "license": "MIT",
@@ -36,7 +32,6 @@
   "homepage": "https://github.com/TylerGarlick/wrecked#readme",
   "dependencies": {
     "babel-polyfill": "^6.23.0",
-    "bluebird": "^3.4.0",
     "boom": "^4.3.0",
     "wreck": "^10.0.0"
   },
@@ -51,7 +46,10 @@
     "nock": "^9.0.9"
   },
   "ava": {
-    "require": [ "babel-polyfill", "babel-register" ],
+    "require": [
+      "babel-polyfill",
+      "babel-register"
+    ],
     "babel": "inherit",
     "failFast": true
   }
