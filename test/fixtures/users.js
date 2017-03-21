@@ -1,6 +1,7 @@
-import nock from 'nock';
+import Nock from 'nock';
 
 const BASE_URL = 'http://api.fake';
+
 const USERS = [
   {
     id: 1,
@@ -22,9 +23,9 @@ const USERS = [
   }
 ];
 
-nock.disableNetConnect();
+Nock.disableNetConnect();
 
-const server = nock(BASE_URL);
+const server = Nock(BASE_URL);
 
 server
   .get('/users')
@@ -49,6 +50,14 @@ server
 
 server
   .put('/users/2', () => true)
+  .reply(200, USERS[1]);
+
+server
+  .delete('/users/2', () => true)
+  .reply(200, {});
+
+server
+  .patch('/users/2', () => true)
   .reply(200, USERS[1]);
 
 export default server;

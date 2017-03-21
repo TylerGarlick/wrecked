@@ -1,14 +1,14 @@
-import test from 'ava';
+import Test from 'ava';
 import Wreckage from '../src';
 
-test(`defaults are set correctly`, t => {
+Test(`defaults are set correctly`, t => {
   const defaults = Wreckage.defaults;
 
   t.is(defaults.request.redirects, 3);
   t.deepEqual(defaults.request.headers, {});
 });
 
-test(`#create(options) overrides the defaults for it's instance`, t => {
+Test(`#create(options) overrides the defaults for it's instance`, t => {
   const config = {
     request: {
       headers: {},

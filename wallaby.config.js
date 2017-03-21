@@ -9,10 +9,11 @@ module.exports = wallaby => ({
   ],
   env: {
     type: 'node'
-    // runner: 'node'
   },
   compilers: {
     '**/*.js': wallaby.compilers.babel()
   },
+  setup: () => require('babel-polyfill'),
+
   testFramework: 'ava'
 });
